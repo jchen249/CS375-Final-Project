@@ -5,12 +5,12 @@
 #include <string>
 using namespace std;
 class Hash{
-	vector<pair<int, int> > hash;
+	vector<int> hash;
 	int count;
-	int collison;
+	int collision;
 public:
 	Hash(unsigned int size);
-	bool insert(int key, int value, int hashType);
+	bool insert(int key, int hashType);
 	bool remove(int key);
 	int find(int key);
 	bool empty();

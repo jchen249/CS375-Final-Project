@@ -10,7 +10,7 @@ using namespace std;
 Hash::Hash(unsigned int size){
 	//vector<pair<int, int> > hash(size);
 	hash.reserve(size);
-	pair<int, int> obj = make_pair(-1,-1);
+	int obj = -1;
 	for(int i =0; i < this->size(); i++){
 		cerr<< i << endl;
 		hash.push_back(obj);
@@ -18,11 +18,11 @@ Hash::Hash(unsigned int size){
 	}
 	//cerr << hash[2] << endl;
 	this->count = 0;
-	this->collison = 0;
+	this->collision = 0;
 
 };
-bool Hash::insert(int key, int value, int hashType){
-	pair<int, int> obj = make_pair(key,value);
+bool Hash::insert(int key, int hashType){
+	int obj = key;
 	//cout << "hi" << endl;
 	int index = -1;
 	if(hashType == 0)
@@ -31,15 +31,15 @@ bool Hash::insert(int key, int value, int hashType){
 	if(count < size()){
 		if(hashType == 0) // linearProbing
 		{
-			linearProbing(key, value);
+			linearProbing(key);
 		}
 		else if(hashType == 1) 	// quadraticProbing
 		{
-			quadraticProbing(key, value);
+			quadraticProbing(key);
 		}
 		else if(hashType == 2) // doubleHashing
 		{
-			doubleHashing(key, value);
+			doubleHashing(key);
 		}
 		else
 		{
@@ -95,7 +95,7 @@ int Hash::size(){
 };
 void Hash::printHash(){
 	for(int i=0; i<size(); i++){
-		cout<<"Index:" << i <<"\t Key:"<< get<0>(hash.at(i)) << "\t Value:" << find(get<0>(hash.at(i))) <<endl;
+		cout<<"Index:" << i <<"\t Key:"<< hash.at(i) <<endl;
 	}
 };
 int Hash::hasher(int key){
@@ -117,19 +117,19 @@ int Hash::hasher(int key){
 
 };
 
-int Hash::linearProbing(int key, int value){
+int Hash::linearProbing(int key){
 	int index = key % (size()-1);
-	while(hash.at(index).first != -1){
+	while(hash.at(index) != -1){
 		index++;
 		collision++;
 	}
 	return index;
 }
 
-int Hash::quadraticProbing(int key, int value){
+int Hash::quadraticProbing(int key){
 	int index = key % (size()-1);
 	int i = 0;
-	while(hash.at(index).first != -1){
+	while(hash.at(index) != -1){
 		index = (key + 7*i + 3*i^2) % (size()-1);
 		collision++;
 	}
@@ -141,7 +141,7 @@ int Hash::doubleHashing(int key){
 	int hash1 = key%size()-1;
 	int hash2 = (key*(2/3)) % size()-1;
 	int index = hash1 + hash2;
-	while(hash[index].first != -1){
+	while(hash[index] != -1){
 		collison++;
 		index += hash2;
 	}

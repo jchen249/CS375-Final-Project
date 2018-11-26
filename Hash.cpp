@@ -18,7 +18,7 @@ Hash::Hash(unsigned int size){
 	}
 	//cerr << hash[2] << endl;
 	this->count = 0;
-	this->collsion = 0;
+	this->collison = 0;
 
 };
 bool Hash::insert(int key, int value, int hashType){
@@ -106,14 +106,13 @@ int Hash::linearProbing(int key){
 int Hash::quadraticProbing(int key){
 	/*code*/
 };
-int Hash::doubleHashing(int key, int value){
+int Hash::doubleHashing(int key){
 	/*code*/
-	pair<int, int> obj = make_pair(key,value);
 	int hash1 = key%size()-1;
 	int hash2 = (key*(2/3)) % size()-1;
 	int index = hash1 + hash2;
 	while(hash[index].first != -1){
-		collsion++;
+		collison++;
 		index += hash2;
 	}
 	return index;

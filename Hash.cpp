@@ -8,9 +8,9 @@
 using namespace std;
 
 Hash::Hash(unsigned int size){
-	//vector<pair<string, string> > hash(size);
+	//vector<pair<int, int> > hash(size);
 	hash.reserve(size);
-	pair<string, string> obj = make_pair("","");
+	pair<int, int> obj = make_pair(-1,-1);
 	for(int i =0; i < this->size(); i++){
 		cerr<< i << endl;
 		hash.push_back(obj);
@@ -18,21 +18,22 @@ Hash::Hash(unsigned int size){
 	}
 	//cerr << hash[2] << endl;
 	this->count = 0;
+	this->collsion = 0;
 
 };
-bool Hash::insert(string key, string value){
-	pair<string, string> obj = make_pair(key,value);
+bool Hash::insert(int key, int value, int hashType){
+	pair<int, int> obj = make_pair(key,value);
 	//cout << "hi" << endl;
-	int index = hasher(key);
+	int index = -1;
+	if(hashType == 0)
+		index = linearProbing(key,);
+
 	if(count < size()){
-		//cerr<< hasher(key)<< endl;
-		//cerr <<get<0>(hash.at(index)) << endl;
-		while (hash[index].first != ""){	
-		// 	cerr <<"hi"<< endl;
-			index++;
-		 	//index= (index+1) % size()-1;
-		 	cerr<<index<< endl;	
-		 }
+		//move to individual hashTypes
+		// while (hash[index].first != -1){	
+		// 	index++;
+
+		//  }
 		cerr<<"inserted"<<endl;
 		hash.at(index) = obj;
 		count++;
@@ -42,11 +43,11 @@ bool Hash::insert(string key, string value){
 	}
 	return true;
 };
-bool Hash::remove(string key){
+bool Hash::remove(int key){
 	int inc=0;
 	int c=0;
 	for(auto i = hash.begin(); i<hash.end();i++){
-		if(hash[c].first == ""){
+		if(hash[c].first == -1){
 			hash.erase(i);
 		}
 		c++;
@@ -61,13 +62,13 @@ bool Hash::remove(string key){
 	return false;
 };
 
-string Hash::find(string key){
+int Hash::find(int key){
 	for(int i=0; i<(signed int)hash.size(); i++){
 		if(get<0>(hash.at(i)) == key){
 			return get<1>(hash.at(i));
 		}
 	}
-	return "";
+	return -1;
 
 };
 bool Hash::empty(){
@@ -81,7 +82,7 @@ void Hash::printHash(){
 		cout<<"Index:" << i <<"\t Key:"<< get<0>(hash.at(i)) << "\t Value:" << find(get<0>(hash.at(i))) <<endl;
 	}
 };
-int Hash::hasher(string key){
+int Hash::hasher(int key){
 	int index;
 	int siz = key.length()-1;
 	index = siz % (size()-1);
@@ -95,6 +96,26 @@ int Hash::hasher(string key){
 	// 	index = siz+i % (size()-1);
 	// }
 	//cerr<< index << endl;
+	return index;
+	
+
+};
+int Hash::linearProbing(int key){
+	/*CODE*/
+};
+int Hash::quadraticProbing(int key){
+	/*code*/
+};
+int Hash::doubleHashing(int key, int value){
+	/*code*/
+	pair<int, int> obj = make_pair(key,value);
+	int hash1 = key%size()-1;
+	int hash2 = (key*(2/3)) % size()-1;
+	int index = hash1 + hash2;
+	while(hash[index].first != -1){
+		collsion++;
+		index += hash2;
+	}
 	return index;
 	
 

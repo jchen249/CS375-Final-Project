@@ -5,17 +5,21 @@
 #include <string>
 using namespace std;
 class Hash{
-	vector<pair<string, string> > hash;
+	vector<pair<int, int> > hash;
 	int count;
+	int collison;
 public:
 	Hash(unsigned int size);
-	bool insert(string key, string value);
-	bool remove(string key);
-	string find(string key);
+	bool insert(int key, int value, int hashType);
+	bool remove(int key);
+	int find(int key);
 	bool empty();
 	int size();
 	void printHash();
-	int hasher(string key);
+	int hasher(int key);
+	int linearProbing(int key);
+	int quadraticProbing(int Key);
+	int doubleHashing(int key);
 
 
 };

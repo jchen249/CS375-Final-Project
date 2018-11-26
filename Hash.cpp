@@ -29,6 +29,22 @@ bool Hash::insert(int key, int value, int hashType){
 		index = linearProbing(key,);
 
 	if(count < size()){
+		if(hashType == 0) // linearProbing
+		{
+			linearProbing(key, value);
+		}
+		else if(hashType == 1) 	// quadraticProbing
+		{
+			quadraticProbing(key, value);
+		}
+		else if(hashType == 2) // doubleHashing
+		{
+			doubleHashing(key, value);
+		}
+		else
+		{
+			cerr<<"invalid hash type (must be 0, 1 or 2)"<<endl;
+		}
 		//move to individual hashTypes
 		// while (hash[index].first != -1){	
 		// 	index++;
@@ -100,12 +116,26 @@ int Hash::hasher(int key){
 	
 
 };
-int Hash::linearProbing(int key){
-	/*CODE*/
-};
-int Hash::quadraticProbing(int key){
-	/*code*/
-};
+
+int Hash::linearProbing(int key, int value){
+	int index = key % (size()-1);
+	while(hash.at(index).first != -1){
+		index++;
+		collision++;
+	}
+	return index;
+}
+
+int Hash::quadraticProbing(int key, int value){
+	int index = key % (size()-1);
+	int i = 0;
+	while(hash.at(index).first != -1){
+		index = (key + 7*i + 3*i^2) % (size()-1);
+		collision++;
+	}
+	return index;
+}
+
 int Hash::doubleHashing(int key){
 	/*code*/
 	int hash1 = key%size()-1;

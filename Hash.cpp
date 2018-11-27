@@ -123,7 +123,7 @@ int Hash::doubleHashing(int key){
 	int index = (hash1 + hash2) % (size()-1);
 	int i = 0;
 	while(hash[index] != -1 && i < (size()-1)){
-		cout << "HERE"<<endl;
+		
 		collision++;
 		index = ((index + hash2) % (size()-1));
 		cout << index << endl;

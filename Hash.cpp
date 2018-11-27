@@ -120,10 +120,10 @@ int Hash::doubleHashing(int key){
 	/*code*/
 	int hash1 = key%size()-1;
 	int hash2 = (key*(2/3)) % size()-1;
-	int index = hash1 + hash2;
+	int index = (hash1 + hash2) % size()-1;
 	while(hash[index] != -1){
 		collision++;
-		index += hash2;
+		index = (index + hash2) % size()-1;
 	}
 	return index;
 };

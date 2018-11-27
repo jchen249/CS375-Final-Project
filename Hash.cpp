@@ -121,7 +121,7 @@ int Hash::doubleHashing(int key){
 	/*code*/
 	int i = 0;
 	int hash1 = key%(size()-1);
-	int hash2 = (key*2) % (size()-1);
+	int hash2 = 1+((key*2) % (size()-1));
 	int index = (hash1 + hash2) % (size()-1);
 	while(hash[index] != -1 && i < (size()-1)){
 		

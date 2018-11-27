@@ -4,7 +4,7 @@
 
 int main(int argc, char **argv)
 {
-	//srand(time(null));
+	srand(time(NULL));
 	
 	//load factor = >75%
 	

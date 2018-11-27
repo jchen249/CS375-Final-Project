@@ -100,6 +100,7 @@ int Hash::linearProbing(int key){
 	int index = key % (size()-1);
 	while(hash.at(index) != -1){
 		index++;
+		index % (size()-1);
 		collision++;
 	}
 	return index;

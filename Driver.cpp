@@ -27,6 +27,7 @@ int main(int argc, char **argv)
 	for(unsigned int i=0; i<v1.size(); i++)
 	{
 		h3.insert(v1[i], 2);
+		
 	}
 	std::cout << "double hashing # of collisions: " << h3.getCollision() << std::endl;
 	return 0;

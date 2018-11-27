@@ -12,7 +12,7 @@ Hash::Hash(unsigned int size){
 	hash.reserve(size);
 	int obj = -1;
 	for(int i =0; i < this->size(); i++){
-		cerr<< i << endl;
+		//cerr<< i << endl;
 		hash.push_back(obj);
 		//cerr<<hash[i].first<<endl;
 	}
@@ -25,21 +25,18 @@ bool Hash::insert(int key, int hashType){
 	int obj = key;
 	//cout << "hi" << endl;
 	int index = -1;
-	if(hashType == 0)
-		index = linearProbing(key,);
-
 	if(count < size()){
 		if(hashType == 0) // linearProbing
 		{
-			linearProbing(key);
+			index = linearProbing(key);
 		}
 		else if(hashType == 1) 	// quadraticProbing
 		{
-			quadraticProbing(key);
+			index = quadraticProbing(key);
 		}
 		else if(hashType == 2) // doubleHashing
 		{
-			doubleHashing(key);
+			index = doubleHashing(key);
 		}
 		else
 		{
@@ -50,7 +47,7 @@ bool Hash::insert(int key, int hashType){
 		// 	index++;
 
 		//  }
-		cerr<<"inserted"<<endl;
+		//cerr<<"inserted"<<endl;
 		hash.at(index) = obj;
 		count++;
 	}else{
@@ -63,13 +60,13 @@ bool Hash::remove(int key){
 	int inc=0;
 	int c=0;
 	for(auto i = hash.begin(); i<hash.end();i++){
-		if(hash[c].first == -1){
+		if(hash[c] == -1){
 			hash.erase(i);
 		}
 		c++;
 	}
 	for(auto i=hash.begin(); i<hash.end(); i++){
-		if(get<0>(hash[inc]) == key){
+		if((hash[inc]) == key){
 			hash.erase(i);
 			return true;
 		}
@@ -80,8 +77,8 @@ bool Hash::remove(int key){
 
 int Hash::find(int key){
 	for(int i=0; i<(signed int)hash.size(); i++){
-		if(get<0>(hash.at(i)) == key){
-			return get<1>(hash.at(i));
+		if((hash.at(i)) == key){
+			return hash.at(i);
 		}
 	}
 	return -1;
@@ -98,24 +95,6 @@ void Hash::printHash(){
 		cout<<"Index:" << i <<"\t Key:"<< hash.at(i) <<endl;
 	}
 };
-int Hash::hasher(int key){
-	int index;
-	int siz = key.length()-1;
-	index = siz % (size()-1);
-	//cerr<< index << endl;
-	//cerr<< (hash.at(index)) << endl;
-	// int i=0;
-	// while(get<1>(hash[index]) != ""){
-	// 	cerr<<"HI" << endl;
-	// 	//index++;
-	// 	i++;
-	// 	index = siz+i % (size()-1);
-	// }
-	//cerr<< index << endl;
-	return index;
-	
-
-};
 
 int Hash::linearProbing(int key){
 	int index = key % (size()-1);
@@ -124,17 +103,18 @@ int Hash::linearProbing(int key){
 		collision++;
 	}
 	return index;
-}
+};
 
 int Hash::quadraticProbing(int key){
 	int index = key % (size()-1);
 	int i = 0;
-	while(hash.at(index) != -1){
-		index = (key + 7*i + 3*i^2) % (size()-1);
+	while(hash.at(index) != -1 && i < (size()-1)){
+		index = (key + (7*i) + (3*i^2)) % (size()-1);
 		collision++;
+		i++;
 	}
 	return index;
-}
+};
 
 int Hash::doubleHashing(int key){
 	/*code*/
@@ -142,10 +122,12 @@ int Hash::doubleHashing(int key){
 	int hash2 = (key*(2/3)) % size()-1;
 	int index = hash1 + hash2;
 	while(hash[index] != -1){
-		collison++;
+		collision++;
 		index += hash2;
 	}
 	return index;
-	
+};
 
+int Hash::getCollision(){
+	return this->collision;
 };

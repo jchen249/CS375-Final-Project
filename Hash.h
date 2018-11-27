@@ -16,11 +16,10 @@ public:
 	bool empty();
 	int size();
 	void printHash();
-	int hasher(int key);
 	int linearProbing(int key);
 	int quadraticProbing(int Key);
 	int doubleHashing(int key);
-
+	int getCollision();
 
 };
 #endif

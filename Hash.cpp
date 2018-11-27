@@ -118,15 +118,14 @@ int Hash::quadraticProbing(int key){
 
 int Hash::doubleHashing(int key){
 	/*code*/
-	int hash1 = key%(size()-1);
-	int hash2 = (key*(2/3)) % (size()-1);
-	int index = (hash1 + hash2) % (size()-1);
 	int i = 0;
+	int hash1 = key%(size()-1);
+	int hash2 = (key*2) % (size()-1);
+	int index = (hash1 + hash2) % (size()-1);
 	while(hash[index] != -1 && i < (size()-1)){
 		
 		collision++;
 		index = ((index + hash2) % (size()-1));
-		cout << index << endl;
 		i ++;
 	}
 	return index;

@@ -4,11 +4,11 @@
 
 int main(int argc, char **argv)
 {
-	Hash h1 = Hash(17);
-	Hash h2 = Hash(17);
-	Hash h3 = Hash(17);
+	Hash h1 = Hash(29);
+	Hash h2 = Hash(29);
+	Hash h3 = Hash(29);
 	std::vector<int> v1;
-	for(int i=0; i<13; i++)
+	for(int i=0; i<22; i++)
 	{
 		int r = rand() % 100 + 1;
 		v1.push_back(r);
@@ -30,5 +30,37 @@ int main(int argc, char **argv)
 		
 	}
 	std::cout << "double hashing # of collisions: " << h3.getCollision() << std::endl;
+	
+	Hash h4 = Hash(47);
+	Hash h5 = Hash(47);
+	Hash h6 = Hash(47);
+	std:vector<int> v2;
+	int r2;
+	for(int i=0; i<30; i++)
+	{
+		r2 = rand() % 100 + 1;
+		v2.push_back(r2);
+		std::cout << r2 << std::endl;
+	}
+	for(unsigned int i=0; i<v2.size(); i++)
+	{
+		h4.insert(v2[i], 0);
+	}
+	std::cout << "linear probing # of collisions: " << h4.getCollision() << std::endl;
+	for(unsigned int i=0; i<v2.size(); i++)
+	{
+		h5.insert(v2[i], 1);
+	}
+	std::cout << "quadratic probing # of collisions: " << h5.getCollision() << std::endl;
+	for(unsigned int i=0; i<v2.size(); i++)
+	{
+		h6.insert(v2[i], 2);
+	}
+	std::cout << "double hashing # of collisions: " << h6.getCollision() << std::endl;
+	
 	return 0;
 }
+
+#include "Hash.h"
+#include <stdlib.h>
+#include <iostream>

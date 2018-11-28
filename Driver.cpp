@@ -1,7 +1,10 @@
 #include "Hash.h"
 #include <stdlib.h>
 #include <iostream>
-
+#include <set>
+int findNonUnq(vector<int> v){
+	return v.size()- ( set<int>(v.begin(), v.end()).size() );
+}
 int main(int argc, char **argv)
 {
 	srand(time(NULL));
@@ -22,6 +25,7 @@ int main(int argc, char **argv)
 	{
 		h1.insert(v1[i], 0);
 	}
+	std::cout << "Number of non unqiue int : " << findNonUnq(v1) << std::endl;
 	std::cout << "linear probing # of collisions: " << h1.getCollision() << std::endl;
 	for(unsigned int i=0; i<v1.size(); i++)
 	{
@@ -52,6 +56,7 @@ int main(int argc, char **argv)
 	{
 		h4.insert(v2[i], 0);
 	}
+	std::cout << "Number of non unqiue int : " << findNonUnq(v2) << std::endl;
 	std::cout << "linear probing # of collisions: " << h4.getCollision() << std::endl;
 	for(unsigned int i=0; i<v2.size(); i++)
 	{
@@ -81,6 +86,7 @@ int main(int argc, char **argv)
 	{
 		h7.insert(v3[i], 0);
 	}
+	std::cout << "Number of non unqiue int : " << findNonUnq(v3) << std::endl;
 	std::cout << "linear probing # of collisions: " << h7.getCollision() << std::endl;
 	for(unsigned int i=0; i<v3.size(); i++)
 	{

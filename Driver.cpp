@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 	srand(time(NULL));
 	
 	//load factor = >75%
+	std::cout << "----------- load factor >75% -----------" << std::endl;
 	
 	Hash h1 = Hash(29);
 	Hash h2 = Hash(29);
@@ -19,7 +20,7 @@ int main(int argc, char **argv)
 	{
 		int r = rand() % 100 + 1;
 		v1.push_back(r);
-		std::cout << r << std::endl;
+		//std::cout << r << std::endl;
 	}	
 	for(unsigned int i=0; i<v1.size(); i++)
 	{
@@ -40,6 +41,7 @@ int main(int argc, char **argv)
 	std::cout << "double hashing # of collisions: " << h3.getCollision() << std::endl;
 	
 	//load factor = 50-75%
+	std::cout << "----------- load factor 50-75% -----------" << std::endl;
 	
 	Hash h4 = Hash(47);
 	Hash h5 = Hash(47);
@@ -50,7 +52,7 @@ int main(int argc, char **argv)
 	{
 		r2 = rand() % 100 + 1;
 		v2.push_back(r2);
-		std::cout << r2 << std::endl;
+		//std::cout << r2 << std::endl;
 	}
 	for(unsigned int i=0; i<v2.size(); i++)
 	{
@@ -70,7 +72,7 @@ int main(int argc, char **argv)
 	std::cout << "double hashing # of collisions: " << h6.getCollision() << std::endl;
 	
 	//load factor = <50%
-	
+	std::cout << "----------- load factor <50% -----------" << std::endl;
 	Hash h7 = Hash(71);
 	Hash h8 = Hash(71);
 	Hash h9 = Hash(71);
@@ -80,7 +82,7 @@ int main(int argc, char **argv)
 	{
 		r3 = rand() % 100 + 1;
 		v3.push_back(r3);
-		std::cout << r3 << std::endl;
+		//std::cout << r3 << std::endl;
 	}
 	for(unsigned int i=0; i<v3.size(); i++)
 	{

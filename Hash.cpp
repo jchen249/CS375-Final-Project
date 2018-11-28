@@ -120,10 +120,12 @@ int Hash::quadraticProbing(int key){
 int Hash::doubleHashing(int key){
 	/*code*/
 	int i = 0;
+	//cout << size() << endl;
 	int hash1 = key%(size()-1);
 	int hash2 = 1+((key*2) % (size()-1));
+	//cout << hash2 << endl;
 	int index = (hash1 + hash2) % (size()-1);
-	while(hash[index] != -1 && i < (size()-1)){
+	while(hash.at(index) != -1 && i < (size()-1)){
 		
 		collision++;
 		index = ((index + hash2) % (size()-1));

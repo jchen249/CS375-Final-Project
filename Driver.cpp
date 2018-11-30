@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 	Hash h2 = Hash(29);
 	Hash h3 = Hash(29);
 	std::vector<int> v1;
-	for(int i=0; i<22; i++)
+	for(int i=0; i<23; i++)
 	{
 		int r = rand() % 300 + 1;
 		v1.push_back(r);
@@ -96,7 +96,7 @@ int main(int argc, char **argv)
 	std::vector<Hash> quadraticHash(3, Hash(11));
 	std::vector<Hash> doubleHash(3, Hash(11));
 	std::vector< vector<int> > randomNum(3);
-	int j = 8; // make randomNum[i][j] of size 8 6 4 for different load factors
+	int j = 9; // make randomNum[i][j] of size 8 6 4 for different load factors
 	for(int i = 0; i<3; i++){
 			for(int k = 0; k<j; k++){
 				//std::cout << j << std::endl;

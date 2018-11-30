@@ -168,7 +168,7 @@ int main(int argc, char **argv)
 	linearHash[1].printHash();
 	std::cout << "linear probing # of collisions: " << linearHash[1].getCollision() << std::endl;
 
-	std::cout << "Quadratic Probing: h(k)= (k+(7i)+(3i^2) %" << " size" << std::endl;
+	std::cout << "Quadratic Probing: h(k)= (k+(i^2)) %" << " size" << std::endl;
 	std::cout << "Keys inserted " << randomNum[1].size() << " : { " << randomNum[1][0];
 	for(int i = 1 ; i < randomNum[1].size(); i++){
 		std::cout <<", " << randomNum[1][i];

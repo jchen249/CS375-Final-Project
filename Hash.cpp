@@ -21,7 +21,7 @@ Hash::Hash(unsigned int size){
 	this->collision = 0;
 
 };
-bool Hash::insert(int key, int hashType){
+bool Hash::insert(int key, int hashType, int prime){
 	int obj = key;
 	//cout << "hi" << endl;
 	int index = -1;
@@ -36,7 +36,7 @@ bool Hash::insert(int key, int hashType){
 		}
 		else if(hashType == 2) // doubleHashing
 		{
-			index = doubleHashing(key);
+			index = doubleHashing(key, prime);
 		}
 		else
 		{
@@ -117,14 +117,13 @@ int Hash::quadraticProbing(int key){
 	return index;
 };
 
-int Hash::doubleHashing(int key){
+int Hash::doubleHashing(int key, int prime){
 	/*code*/
+	//cout << prime << endl;
 	int i = 0;
-	//cout << size() << endl;
 	int hash1 = key%(size()-1);
-	int hash2 = 1+((key*2) % (size()-1));
-	//cout << hash2 << endl;
-	int index = (hash1 + hash2) % (size()-1);
+	int hash2 = prime - (key % prime);
+	int index = hash1;
 	while(hash.at(index) != -1 && i < (size()-1)){
 		
 		collision++;

@@ -10,7 +10,7 @@ class Hash{
 	int collision;
 public:
 	Hash(unsigned int size);
-	bool insert(int key, int hashType);
+	bool insert(int key, int hashType, int prime = 2);
 	bool remove(int key);
 	int find(int key);
 	bool empty();
@@ -18,7 +18,7 @@ public:
 	void printHash();
 	int linearProbing(int key);
 	int quadraticProbing(int Key);
-	int doubleHashing(int key);
+	int doubleHashing(int key, int prime);
 	int getCollision();
 
 };

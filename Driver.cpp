@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 	srand(time(NULL));
 	
 	//load factor = >75%
+	std::cout << "********* TABLE SIZE 29 *********" << std::endl;
 	std::cout << "----------- load factor >75% -----------" << std::endl;
 	
 	Hash h1 = Hash(29);
@@ -25,30 +26,23 @@ int main(int argc, char **argv)
 	for(unsigned int i=0; i<v1.size(); i++)
 	{
 		h1.insert(v1[i], 0);
+		h2.insert(v1[i], 1);
+		h3.insert(v1[i], 2, 23);
 	}
 	std::cout << "Number of non unqiue int : " << findNonUnq(v1) << std::endl;
 	std::cout << "linear probing # of collisions: " << h1.getCollision() << std::endl;
-	for(unsigned int i=0; i<v1.size(); i++)
-	{
-		h2.insert(v1[i], 1);
-	}
 	std::cout << "quadratic probing # of collisions: " << h2.getCollision() << std::endl;
-	for(unsigned int i=0; i<v1.size(); i++)
-	{
-		h3.insert(v1[i], 2);
-		
-	}
 	std::cout << "double hashing # of collisions: " << h3.getCollision() << std::endl;
 	
 	//load factor = 50-75%
 	std::cout << "----------- load factor 50-75% -----------" << std::endl;
 	
-	Hash h4 = Hash(47);
-	Hash h5 = Hash(47);
-	Hash h6 = Hash(47);
+	Hash h4 = Hash(29);
+	Hash h5 = Hash(29);
+	Hash h6 = Hash(29);
 	std::vector<int> v2;
 	int r2;
-	for(int i=0; i<30; i++)
+	for(int i=0; i<18; i++)
 	{
 		r2 = rand() % 100 + 1;
 		v2.push_back(r2);
@@ -57,28 +51,22 @@ int main(int argc, char **argv)
 	for(unsigned int i=0; i<v2.size(); i++)
 	{
 		h4.insert(v2[i], 0);
+		h5.insert(v2[i], 1);
+		h6.insert(v2[i], 2, 23);
 	}
 	std::cout << "Number of non unqiue int : " << findNonUnq(v2) << std::endl;
 	std::cout << "linear probing # of collisions: " << h4.getCollision() << std::endl;
-	for(unsigned int i=0; i<v2.size(); i++)
-	{
-		h5.insert(v2[i], 1);
-	}
 	std::cout << "quadratic probing # of collisions: " << h5.getCollision() << std::endl;
-	for(unsigned int i=0; i<v2.size(); i++)
-	{
-		h6.insert(v2[i], 2);
-	}
 	std::cout << "double hashing # of collisions: " << h6.getCollision() << std::endl;
 	
 	//load factor = <50%
 	std::cout << "----------- load factor <50% -----------" << std::endl;
-	Hash h7 = Hash(71);
-	Hash h8 = Hash(71);
-	Hash h9 = Hash(71);
+	Hash h7 = Hash(29);
+	Hash h8 = Hash(29);
+	Hash h9 = Hash(29);
 	std::vector<int> v3;
 	int r3;
-	for(int i=0; i<25; i++)
+	for(int i=0; i<12; i++)
 	{
 		r3 = rand() % 100 + 1;
 		v3.push_back(r3);
@@ -87,20 +75,59 @@ int main(int argc, char **argv)
 	for(unsigned int i=0; i<v3.size(); i++)
 	{
 		h7.insert(v3[i], 0);
+		h8.insert(v3[i], 1);
+		h9.insert(v3[i], 2, 23);
 	}
 	std::cout << "Number of non unqiue int : " << findNonUnq(v3) << std::endl;
 	std::cout << "linear probing # of collisions: " << h7.getCollision() << std::endl;
-	for(unsigned int i=0; i<v3.size(); i++)
-	{
-		h8.insert(v3[i], 1);
-	}
 	std::cout << "quadratic probing # of collisions: " << h8.getCollision() << std::endl;
-	for(unsigned int i=0; i<v3.size(); i++)
-	{
-		h9.insert(v3[i], 2);
-	}
 	std::cout << "double hashing # of collisions: " << h9.getCollision() << std::endl;
-	
+
+
+	std::cout << "\n********* TABLE SIZE 10 *********" << std::endl;
+	std::vector<Hash> linearHash(3, Hash(10));
+	std::vector<Hash> quadraticHash(3, Hash(10));
+	std::vector<Hash> doubleHash(3, Hash(10));
+	std::vector< vector<int> > randomNum(3);
+	int j = 8; // make randomNum[i][j] of size 8 6 4 for different load factors
+	for(int i = 0; i<3; i++){
+			for(int k = 0; k<j; k++){
+				std::cout << j << std::endl;
+				randomNum[i].push_back(rand() % 100 + 1);
+				linearHash[i].insert(randomNum[i][k],0);
+				quadraticHash[i].insert(randomNum[i][k],1);
+				doubleHash[i].insert(randomNum[i][k],2,7);
+			}
+			std::cout << "----------- load factor " << (j/10.0)*100 << "% -----------" << std::endl;
+			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum[i]) << std::endl;
+			std::cout << "linear probing # of collisions: " << linearHash[i].getCollision() << std::endl;
+			std::cout << "quadratic probing # of collisions: " << quadraticHash[i].getCollision() << std::endl;
+			std::cout << "double hashing # of collisions: " << doubleHash[i].getCollision() << std::endl;
+		j-=2;
+	}
+
+	std::cout << "\n********* TABLE SIZE 100 *********" << std::endl;
+	std::vector<Hash> linearHash1(3, Hash(100));
+	std::vector<Hash> quadraticHash1(3, Hash(100));
+	std::vector<Hash> doubleHash1(3, Hash(100));
+	std::vector< vector<int> > randomNum1(3);
+	int j1 = 80; // make randomNum[i][j] of size 8 6 4 for different load factors
+	for(int i = 0; i<3; i++){
+			for(int k = 0; k<j1; k++){
+				randomNum1[i].push_back(rand() % 100 + 1);
+				linearHash1[i].insert(randomNum1[i][k],0);
+				quadraticHash1[i].insert(randomNum1[i][k],1);
+				doubleHash1[i].insert(randomNum1[i][k],2,2);
+			}
+			std::cout << "----------- load factor " << (j1/100.0)*100 << "% -----------" << std::endl;
+			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum1[i]) << std::endl;
+			std::cout << "linear probing # of collisions: " << linearHash1[i].getCollision() << std::endl;
+			std::cout << "quadratic probing # of collisions: " << quadraticHash1[i].getCollision() << std::endl;
+			std::cout << "double hashing # of collisions: " << doubleHash1[i].getCollision() << std::endl;
+		j1-=20;
+	}
+
+
 	
 	return 0;
 }

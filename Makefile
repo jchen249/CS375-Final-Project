@@ -10,7 +10,7 @@ Driver: $(OBJECTS)
 	$(GCC) $(OBJECTS) -o $(EXECUTABLE)
 
 target:
-	number=0; while [[ $$number -le 9 ]] ; do \
+	number=0; while [[ $$number -le 19 ]] ; do \
 		./test; \
 		sleep 2; \
 		((number = number +1)); \

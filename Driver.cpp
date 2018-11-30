@@ -122,7 +122,7 @@ int main(int argc, char **argv)
 			//doubleHash[i].printHash();
 		j-=2;
 	}
-
+ 
 	std::cout << "\n********* TABLE SIZE 101 *********" << std::endl;
 	std::vector<Hash> linearHash1(3, Hash(101));
 	std::vector<Hash> quadraticHash1(3, Hash(101));

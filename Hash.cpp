@@ -123,11 +123,13 @@ int Hash::doubleHashing(int key, int prime){
 	int i = 0;
 	int hash1 = key%(size()-1);
 	int hash2 = prime - (key % prime);
+	//int hash2 = 1 + ((key/size()-1) %size()-1-1);
 	int index = hash1;
 	while(hash.at(index) != -1 && i < (size()-1)){
 		
 		collision++;
 		index = ((index + hash2) % (size()-1));
+		//cout << index << endl;
 		i ++;
 	}
 	return index;

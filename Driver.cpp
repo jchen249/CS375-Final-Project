@@ -3,6 +3,9 @@
 #include <iostream>
 #include <set>
 #include <algorithm>
+#include <fstream>
+//using namespace std;
+
 int findNonUnq(vector<int> v){
 	return v.size()- ( set<int>(v.begin(), v.end()).size() );
 }
@@ -11,6 +14,8 @@ int main(int argc, char **argv)
 	srand(time(NULL));
 	
 	//load factor = >75%
+	ofstream myfile;
+	myfile.open("data.csv", ios::out | ios::app);
 	std::cout << "********* TABLE SIZE 29 *********" << std::endl;
 	std::cout << "----------- load factor >75% -----------" << std::endl;
 	
@@ -140,6 +145,18 @@ int main(int argc, char **argv)
 			std::cout << "double hashing # of collisions: " << doubleHash1[i].getCollision() << std::endl;
 		j1-=20;
 	}
+	myfile << h1.getCollision() << ", " << h2.getCollision() << ", " << h3.getCollision()<<", "
+		<< h4.getCollision() << ", " << h5.getCollision() << ", " << h6.getCollision()<<", "
+		<< h7.getCollision() << ", " << h8.getCollision() << ", " << h9.getCollision();
+	for(int i =0; i<3; i++){
+		myfile <<", " << linearHash[i].getCollision() << ", " << quadraticHash[i].getCollision() <<", " << doubleHash[i].getCollision();
+	}
+	for(int i =0; i<3; i++){
+		
+		myfile <<", " << linearHash1[i].getCollision() << ", " << quadraticHash1[i].getCollision() <<", " << doubleHash1[i].getCollision();
+	}
+	myfile << endl;
+	myfile.close();
 
 
 	

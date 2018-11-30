@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	std::vector<int> v1;
 	for(int i=0; i<22; i++)
 	{
-		int r = rand() % 100 + 1;
+		int r = rand() % 300 + 1;
 		v1.push_back(r);
 		//std::cout << r << std::endl;
 	}	
@@ -47,7 +47,7 @@ int main(int argc, char **argv)
 	int r2;
 	for(int i=0; i<18; i++)
 	{
-		r2 = rand() % 100 + 1;
+		r2 = rand() % 300 + 1;
 		v2.push_back(r2);
 		//std::cout << r2 << std::endl;
 	}
@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 	int r3;
 	for(int i=0; i<12; i++)
 	{
-		r3 = rand() % 100 + 1;
+		r3 = rand() % 300 + 1;
 		v3.push_back(r3);
 		//std::cout << r3 << std::endl;
 	}
@@ -99,7 +99,7 @@ int main(int argc, char **argv)
 	int j = 8; // make randomNum[i][j] of size 8 6 4 for different load factors
 	for(int i = 0; i<3; i++){
 			for(int k = 0; k<j; k++){
-				std::cout << j << std::endl;
+				//std::cout << j << std::endl;
 				randomNum[i].push_back(rand() % 100 + 1);
 				linearHash[i].insert(randomNum[i][k],0);
 				quadraticHash[i].insert(randomNum[i][k],1);
@@ -110,8 +110,11 @@ int main(int argc, char **argv)
 			std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum[i]) << std::endl;
 			std::cout << "linear probing # of collisions: " << linearHash[i].getCollision() << std::endl;
+			//linearHash[i].printHash();
 			std::cout << "quadratic probing # of collisions: " << quadraticHash[i].getCollision() << std::endl;
+			//quadraticHash[i].printHash();
 			std::cout << "double hashing # of collisions: " << doubleHash[i].getCollision() << std::endl;
+			//doubleHash[i].printHash();
 		j-=2;
 	}
 
@@ -123,7 +126,7 @@ int main(int argc, char **argv)
 	int j1 = 80; // make randomNum[i][j] of size 8 make6 4 for different load factors
 	for(int i = 0; i<3; i++){
 			for(int k = 0; k<j1; k++){
-				randomNum1[i].push_back(rand() % 100 + 1);
+				randomNum1[i].push_back(rand() % 1000 + 1);
 				linearHash1[i].insert(randomNum1[i][k],0);
 				quadraticHash1[i].insert(randomNum1[i][k],1);
 				doubleHash1[i].insert(randomNum1[i][k],2,97);

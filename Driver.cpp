@@ -158,6 +158,34 @@ int main(int argc, char **argv)
 	myfile << endl;
 	myfile.close();
 
+	//print demo slides
+	std::cout << "Linear Probing: h(k)= (k+i) %" << " size" <<  std::endl;
+	std::cout << "Keys inserted " << randomNum[1].size() << " : { " << randomNum[1][0];
+	for(int i = 1 ; i < randomNum[1].size(); i++){
+		std::cout <<", " << randomNum[1][i];
+	}
+	std::cout << "}" << std::endl;
+	linearHash[1].printHash();
+	std::cout << "linear probing # of collisions: " << linearHash[1].getCollision() << std::endl;
+
+	std::cout << "Quadratic Probing: h(k)= (k+(7i)+(3i^2) %" << " size" << std::endl;
+	std::cout << "Keys inserted " << randomNum[1].size() << " : { " << randomNum[1][0];
+	for(int i = 1 ; i < randomNum[1].size(); i++){
+		std::cout <<", " << randomNum[1][i];
+	}
+	std::cout << "}" << std::endl;
+	quadraticHash[1].printHash();
+	std::cout << "quadratic probing # of collisions: " << quadraticHash[1].getCollision() << std::endl;
+
+	std::cout << "Quadratic Probing: h(k)= k % (h2*i) %" << " size. where h2(k) = 7 - (k % 7)" << std::endl;
+	std::cout << "Keys inserted " << randomNum[1].size() << " : { " << randomNum[1][0];
+	for(int i = 1 ; i < randomNum[1].size(); i++){
+		std::cout <<", " << randomNum[1][i];
+	}
+	std::cout << "}" << std::endl;
+	doubleHash[1].printHash();
+	std::cout << "Double probing # of collisions: " << doubleHash[1].getCollision() << std::endl;
+
 
 	
 	return 0;

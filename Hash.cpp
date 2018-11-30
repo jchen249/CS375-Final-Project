@@ -92,25 +92,30 @@ int Hash::size(){
 };
 void Hash::printHash(){
 	for(int i=0; i<size(); i++){
+		if(i != 10 && size() == 11){
+			cout<<"Index:" << i <<"\t\t Key:"<< hash.at(i) <<endl;
+			continue;
+		}
 		cout<<"Index:" << i <<"\t Key:"<< hash.at(i) <<endl;
 	}
 };
 
 int Hash::linearProbing(int key){
-	int index = key % (size()-1);
+	cout << size() << endl;
+	int index = key % (size());
 	while(hash.at(index) != -1){
 		index++;
-		index %= (size()-1);
+		index %= (size());
 		collision++;
 	}
 	return index;
 };
 
 int Hash::quadraticProbing(int key){
-	int index = key % (size()-1);
+	int index = key % (size());
 	int i = 0;
-	while(hash.at(index) != -1 && i < (size()-1)){
-		index = (index + (7*i) + (3*i^2)) % (size()-1);
+	while(hash.at(index) != -1 && i < (size())){
+		index = (index + (7*i) + (3*i^2)) % (size());
 		collision++;
 		i++;
 	}
@@ -121,14 +126,14 @@ int Hash::doubleHashing(int key, int prime){
 	/*code*/
 	//cout << prime << endl;
 	int i = 0;
-	int hash1 = key%(size()-1);
+	int hash1 = key%(size());
 	int hash2 = prime - (key % prime);
 	//int hash2 = 1 + ((key/size()-1) %size()-1-1);
 	int index = hash1;
-	while(hash.at(index) != -1 && i < (size()-1)){
+	while(hash.at(index) != -1 && i < (size())){
 		
 		collision++;
-		index = ((index + hash2) % (size()-1));
+		index = ((index + hash2) % (size()));
 		//cout << index << endl;
 		i ++;
 	}

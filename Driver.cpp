@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <set>
+#include <algorithm>
 int findNonUnq(vector<int> v){
 	return v.size()- ( set<int>(v.begin(), v.end()).size() );
 }
@@ -29,6 +30,8 @@ int main(int argc, char **argv)
 		h2.insert(v1[i], 1);
 		h3.insert(v1[i], 2, 23);
 	}
+	auto minmax= std::minmax_element(v1.begin(), v1.end());
+	std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 	std::cout << "Number of non unqiue int : " << findNonUnq(v1) << std::endl;
 	std::cout << "linear probing # of collisions: " << h1.getCollision() << std::endl;
 	std::cout << "quadratic probing # of collisions: " << h2.getCollision() << std::endl;
@@ -54,6 +57,8 @@ int main(int argc, char **argv)
 		h5.insert(v2[i], 1);
 		h6.insert(v2[i], 2, 23);
 	}
+	minmax= std::minmax_element(v2.begin(), v2.end());
+	std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 	std::cout << "Number of non unqiue int : " << findNonUnq(v2) << std::endl;
 	std::cout << "linear probing # of collisions: " << h4.getCollision() << std::endl;
 	std::cout << "quadratic probing # of collisions: " << h5.getCollision() << std::endl;
@@ -78,6 +83,8 @@ int main(int argc, char **argv)
 		h8.insert(v3[i], 1);
 		h9.insert(v3[i], 2, 23);
 	}
+	minmax= std::minmax_element(v3.begin(), v3.end());
+	std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 	std::cout << "Number of non unqiue int : " << findNonUnq(v3) << std::endl;
 	std::cout << "linear probing # of collisions: " << h7.getCollision() << std::endl;
 	std::cout << "quadratic probing # of collisions: " << h8.getCollision() << std::endl;
@@ -98,7 +105,9 @@ int main(int argc, char **argv)
 				quadraticHash[i].insert(randomNum[i][k],1);
 				doubleHash[i].insert(randomNum[i][k],2,7);
 			}
+			minmax= std::minmax_element(randomNum[i].begin(), randomNum[i].end());
 			std::cout << "----------- load factor " << (j/11.0)*100 << "% -----------" << std::endl;
+			std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum[i]) << std::endl;
 			std::cout << "linear probing # of collisions: " << linearHash[i].getCollision() << std::endl;
 			std::cout << "quadratic probing # of collisions: " << quadraticHash[i].getCollision() << std::endl;
@@ -119,7 +128,9 @@ int main(int argc, char **argv)
 				quadraticHash1[i].insert(randomNum1[i][k],1);
 				doubleHash1[i].insert(randomNum1[i][k],2,97);
 			}
+			minmax= std::minmax_element(randomNum1[i].begin(), randomNum1[i].end());
 			std::cout << "----------- load factor " << (j1/101.0)*100 << "% -----------" << std::endl;
+			std::cout << "Range: " << *minmax.second - *minmax.first << std::endl;
 			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum1[i]) << std::endl;
 			std::cout << "linear probing # of collisions: " << linearHash1[i].getCollision() << std::endl;
 			std::cout << "quadratic probing # of collisions: " << quadraticHash1[i].getCollision() << std::endl;

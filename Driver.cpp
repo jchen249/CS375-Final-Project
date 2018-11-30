@@ -84,10 +84,10 @@ int main(int argc, char **argv)
 	std::cout << "double hashing # of collisions: " << h9.getCollision() << std::endl;
 
 
-	std::cout << "\n********* TABLE SIZE 10 *********" << std::endl;
-	std::vector<Hash> linearHash(3, Hash(10));
-	std::vector<Hash> quadraticHash(3, Hash(10));
-	std::vector<Hash> doubleHash(3, Hash(10));
+	std::cout << "\n********* TABLE SIZE 11 *********" << std::endl;
+	std::vector<Hash> linearHash(3, Hash(11));
+	std::vector<Hash> quadraticHash(3, Hash(11));
+	std::vector<Hash> doubleHash(3, Hash(11));
 	std::vector< vector<int> > randomNum(3);
 	int j = 8; // make randomNum[i][j] of size 8 6 4 for different load factors
 	for(int i = 0; i<3; i++){
@@ -98,7 +98,7 @@ int main(int argc, char **argv)
 				quadraticHash[i].insert(randomNum[i][k],1);
 				doubleHash[i].insert(randomNum[i][k],2,7);
 			}
-			std::cout << "----------- load factor " << (j/10.0)*100 << "% -----------" << std::endl;
+			std::cout << "----------- load factor " << (j/11.0)*100 << "% -----------" << std::endl;
 			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum[i]) << std::endl;
 			std::cout << "linear probing # of collisions: " << linearHash[i].getCollision() << std::endl;
 			std::cout << "quadratic probing # of collisions: " << quadraticHash[i].getCollision() << std::endl;
@@ -106,20 +106,20 @@ int main(int argc, char **argv)
 		j-=2;
 	}
 
-	std::cout << "\n********* TABLE SIZE 100 *********" << std::endl;
-	std::vector<Hash> linearHash1(3, Hash(100));
-	std::vector<Hash> quadraticHash1(3, Hash(100));
-	std::vector<Hash> doubleHash1(3, Hash(100));
+	std::cout << "\n********* TABLE SIZE 101 *********" << std::endl;
+	std::vector<Hash> linearHash1(3, Hash(101));
+	std::vector<Hash> quadraticHash1(3, Hash(101));
+	std::vector<Hash> doubleHash1(3, Hash(101));
 	std::vector< vector<int> > randomNum1(3);
-	int j1 = 80; // make randomNum[i][j] of size 8 6 4 for different load factors
+	int j1 = 80; // make randomNum[i][j] of size 8 make6 4 for different load factors
 	for(int i = 0; i<3; i++){
 			for(int k = 0; k<j1; k++){
 				randomNum1[i].push_back(rand() % 100 + 1);
 				linearHash1[i].insert(randomNum1[i][k],0);
 				quadraticHash1[i].insert(randomNum1[i][k],1);
-				doubleHash1[i].insert(randomNum1[i][k],2,2);
+				doubleHash1[i].insert(randomNum1[i][k],2,97);
 			}
-			std::cout << "----------- load factor " << (j1/100.0)*100 << "% -----------" << std::endl;
+			std::cout << "----------- load factor " << (j1/101.0)*100 << "% -----------" << std::endl;
 			std::cout << "Number of non unqiue int : " << findNonUnq(randomNum1[i]) << std::endl;
 			std::cout << "linear probing # of collisions: " << linearHash1[i].getCollision() << std::endl;
 			std::cout << "quadratic probing # of collisions: " << quadraticHash1[i].getCollision() << std::endl;

@@ -175,9 +175,9 @@ int main(int argc, char **argv)
 	}
 	std::cout << "}" << std::endl;
 	quadraticHash[1].printHash();
-	std::cout << "quadratic probing # of collisions: " << quadraticHash[1].getCollision() << std::endl;
+	std::cout << "Quadratic probing # of collisions: " << quadraticHash[1].getCollision() << std::endl;
 
-	std::cout << "Quadratic Probing: h(k)= k % (h2*i) %" << " size. where h2(k) = 7 - (k % 7)" << std::endl;
+	std::cout << "Double Probing: h(k)= k % (h2*i) %" << " size. where h2(k) = 7 - (k % 7)" << std::endl;
 	std::cout << "Keys inserted " << randomNum[1].size() << " : { " << randomNum[1][0];
 	for(int i = 1 ; i < randomNum[1].size(); i++){
 		std::cout <<", " << randomNum[1][i];

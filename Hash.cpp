@@ -126,9 +126,9 @@ int Hash::quadraticProbing(int key){
 	int index = key % (size());
 	int i = 0;
 	while(hash.at(index) != -1 && i < (size())){
-		index = (key + i^2) % (size());
-		collision++;
 		i++;
+		index = (key + (i*i)) % (size());
+		collision++;
 	}
 	return index;
 };

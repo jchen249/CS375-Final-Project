@@ -15,9 +15,9 @@ single run "./test" after compiling
 
 ---
 # Files
-1.Hash.h/Hash.cpp - Implementation of open addressing methohds, insert(), search(), delete()
-2.Driver.cpp - Generates test cases and data.cvs with results
-3.dataExcel.xlsx - Generate graphs from data.cvs
+1. Hash.h/Hash.cpp - Implementation of open addressing methohds, insert(), search(), delete()
+2. Driver.cpp - Generates test cases and data.cvs with results
+3. dataExcel.xlsx - Generate graphs from data.cvs
 
 
 ---

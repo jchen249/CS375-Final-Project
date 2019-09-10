@@ -111,27 +111,7 @@ int Hash::linearProbing(int key){
 	return index;
 };
 
-/*int Hash::quadraticProbing(int key){
-	int index = key % (size());
-	int i = 0;
-	while(hash.at(index) != -1 && i < (size())){
-		index = (index + (7*i) + (3*i^2)) % (size());
-		collision++;
-		i++;
-	}
-	return index;
-};*/
 
-/*int Hash::quadraticProbing(int key){
-	int index = key % (size());
-	int i = 0;
-	while(hash.at(index) != -1 && i < (size())){
-		i++;
-		index = (key + (i*i)) % (size());
-		collision++;
-	}
-	return index;
-};*/
 
 int Hash::quadraticProbing(int key){
 	int index = key % (size());
